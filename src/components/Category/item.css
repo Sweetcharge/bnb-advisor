@@ -14,8 +14,6 @@
     position: absolute;
     top: 10px;
     right: 5px;
-    color: rgb(254, 246, 246);
-    background: red;
     border: 0;
 }
 
@@ -25,11 +23,20 @@
     top: 5px;
     right: 5px;
     transition: ease-in-out 0.15s;
+    color: rgb(184, 184, 184);
 }
 
 .item-btn:hover .FaHeart-Item {
     color: rgb(255, 101, 160);
     cursor: pointer;
+}
+
+.item-btn:focus {
+    outline: none;
+}
+
+.favorited .FaHeart-Item {
+    color: rgb(255, 101, 160);
 }
 
 .img-container {

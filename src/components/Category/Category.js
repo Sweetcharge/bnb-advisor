@@ -2,7 +2,7 @@ import React from 'react'
 import "./category.css"
 import "./item.css"
 import placeholder from "../placeholder.png"
-// import { FaHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 
 
 class Category extends React.Component {
@@ -13,7 +13,7 @@ class Category extends React.Component {
             lat: "",
             long: "",
             hits: [],
-            photoReferences: []
+            favorites: []
         }
 
         this.handleClick = this.handleClick.bind(this);
@@ -81,9 +81,11 @@ class Category extends React.Component {
     }
 
     handleClick(e) {
-        // const parentID = (e.target).parentNode.parentNode.parentNode.id;
-        // const itemID = e.target.parentNode.id;
-        console.log(this.myRef.current);
+        const targetID = e.currentTarget.parentNode.id
+        const buttonID = e.currentTarget.classList.add("favorited");
+        const targetElement = document.getElementById(targetID);
+
+        
     }
 
     render() {
@@ -98,11 +100,11 @@ class Category extends React.Component {
             const baseURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&maxheight=100&photoreference="+photoRef+"&key="+this.props.apiKey;
             // console.log(baseURL)
 
-            const id = Math.floor(Math.random() * 10000)
+            const id = Math.floor(Math.random() * 10000000);
 
            return <Item 
             uniqueID={id}
-            favorite={this.handleClick}
+            action={this.handleClick}
             name={name} 
             img={baseURL}
             address={address}
@@ -121,7 +123,6 @@ class Category extends React.Component {
                 </div>
             </div>
         )
-        // { <FaHeart className="FaHeart-Item" /> }
     }
 }
 
@@ -130,8 +131,8 @@ export default Category
 
 const Item = (props) => {
     return (
-        <div ref={props.uniqueID} className="Item">
-            <button onClick={props.favorite} className="item-btn">Add</button>
+        <div id={props.uniqueID} className="Item">
+            <button onClick={props.action} className="item-btn">{ <FaHeart className="FaHeart-Item" /> }</button>
             <div className="img-container">
                 <img src={placeholder} alt=""/>
             </div>
