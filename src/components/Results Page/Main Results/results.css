@@ -1,0 +1,8 @@
+.Results {
+    grid-column: 1 / 17;
+    /* autoprefixer: off */
+    grid-row: 3 / 17;
+    /* autoprefixer: off */
+    overflow: auto;
+    background-color: rgb(255, 255, 255);
+}

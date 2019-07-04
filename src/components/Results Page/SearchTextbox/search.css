@@ -1,0 +1,74 @@
+.SearchTextbox {
+    background: rgb(255, 255, 255);
+    grid-column-start: 1;
+    /* autoprefixer: off */
+    grid-column-end: 17;
+    grid-row-start: 1;
+        /* autoprefixer: off */
+    grid-row-end: 3;
+    
+    border-radius: 30px 0px 0px 0px;
+    text-align: center;
+    box-shadow: 10px 0px 10px 5px rgb(182, 182, 182);
+    z-index: 2;
+}
+
+.SearchTextbox form {
+    height: 100%;
+    position: relative;
+}
+
+.SearchTextbox form input, .SearchTextbox form button {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-35%);
+}
+
+.SearchTextbox form button {
+    right: 25%;
+    transform: translateX(25%);
+}
+
+.SearchTextbox form input {
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    font-size: 35px;
+    border: 0;
+    border-bottom: solid 2px white;
+    transition: ease-in-out 0.3s;
+    color: rgb(72, 72, 72);
+}
+
+.SearchTextbox form input:focus {
+    outline: none;
+    border-bottom: solid 3px rgb(51, 154, 240);
+}
+
+.Search-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "HelveticaNeue";
+    font-size: 13px;
+    color: rgb(197, 200, 205);
+}
+
+.Search-button {
+    background: transparent;
+    border: 0;
+}
+
+.Search-button:hover .FaSearch {
+    cursor: pointer;
+    color: rgb(51, 154, 240);
+}
+
+.FaSearch {
+    font-size: 25px;
+    color: rgb(197, 200, 205);
+    transition: ease-in-out 0.25s;
+    padding: 5px;
+    vertical-align: middle;
+}

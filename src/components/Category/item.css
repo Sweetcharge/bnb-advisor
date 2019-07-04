@@ -1,0 +1,84 @@
+.Item {
+    overflow: hidden;
+    display: inline-block;
+    margin: 30px 30px 00px 0px;
+    width: 200px;
+    border-radius: 20px;
+    font-family: "HelveticaNeue-Light";
+    text-align: center;
+    box-shadow: 0px 0px 10px 2px rgb(193, 193, 193);
+    position: relative;
+}
+
+.item-btn {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    color: rgb(254, 246, 246);
+    background: red;
+    border: 0;
+}
+
+.FaHeart-Item {
+    font-size: 30px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transition: ease-in-out 0.15s;
+}
+
+.item-btn:hover .FaHeart-Item {
+    color: rgb(255, 101, 160);
+    cursor: pointer;
+}
+
+.img-container {
+    border-radius: 20px 0px;
+}
+
+.Item img {
+    height: 150px;
+    width: 100%;
+    border-radius: 20px 0px 0px 0px;
+}
+
+.item-title {
+    padding: 0px 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "HelveticaNeue-Medium";
+    color: rgb(72, 72, 72);
+    font-size: 18px;
+    width: 90%;
+    margin: 20px auto 0px auto; 
+}
+
+.item-address {
+    font-family: "HelveticaNeue-Medium";
+    color: rgb(154, 154, 154);
+    font-size: 10px;
+    width: 90%;
+    margin: auto;
+    white-space: normal;
+    padding: 5spx;
+    margin: 10px auto 25px auto; 
+}
+
+.item-price {
+    font-size: 20px;
+    font-family: "HelveticaNeue-Medium";
+    color: rgb(27, 150, 27);
+}
+
+.item-rating {
+    font-size: 15px;
+    font-family: "HelveticaNeue-Thin";
+    color: rgb(227, 144, 42);
+    padding: 5px;
+}
+
+.item-user {
+    font-size: 14px;
+    font-family: "HelveticaNeue-Medium";
+    color: rgb(154, 154, 154);
+}
