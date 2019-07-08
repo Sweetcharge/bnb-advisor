@@ -22,12 +22,12 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    transition: ease-in-out 0.15s;
+    transition: ease-in-out 0.1s;
     color: rgb(184, 184, 184);
 }
 
 .item-btn:hover .FaHeart-Item {
-    color: rgb(255, 101, 160);
+    color: rgb(104, 104, 104);
     cursor: pointer;
 }
 
@@ -37,6 +37,8 @@
 
 .favorited .FaHeart-Item {
     color: rgb(255, 101, 160);
+    pointer-events: none;
+    cursor: none;
 }
 
 .img-container {

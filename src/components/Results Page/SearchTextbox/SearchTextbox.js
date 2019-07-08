@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { withRouter } from "react-router-dom";
 import "./search.css"
-
 import { FaSearch } from "react-icons/fa"
 
 class SearchTextbox extends React.Component {
@@ -15,7 +13,7 @@ class SearchTextbox extends React.Component {
 
     componentWillMount() {
         this.setState({
-            newLocation: this.props.searchQuery
+            newLocation: this.props.currentLocation
         })
     }
 
@@ -27,10 +25,7 @@ class SearchTextbox extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.history.replace({
-            pathname: "/results",
-            state: this.state.newLocation
-        })
+        this.props.updateLocation(this.state.newLocation);
     }
 
     render() {
@@ -54,4 +49,4 @@ class SearchTextbox extends React.Component {
     }
 }
 
-export default withRouter(SearchTextbox)
+export default SearchTextbox;

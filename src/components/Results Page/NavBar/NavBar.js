@@ -7,14 +7,35 @@ import { FaHome, FaHeart, FaRoad } from 'react-icons/fa';
 import { NavLink } from "react-router-dom";
 import "./nav.css"
 
-function NavBar() {
+function NavBar(){
     return (
         <div className="NavBar">
             <img className="Nav-img" src={placeholder} alt=""/>
             <ul>
-                <li><NavLink className="Nav-link" to={"/"}><FaHome className="FaHome"/> Home</NavLink></li>
-                <li><NavLink className="Nav-link" to={"/favorites"}><FaHeart className="FaHeart" /> Favorites</NavLink></li>
-                <li><NavLink className="Nav-link" to={"/map"}><FaRoad className="FaRoad"/> Map</NavLink></li>
+                <li>
+                    <NavLink 
+                        className="Nav-link" 
+                        exact to={"/"}>
+                        <FaHome className="FaHome"/> 
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        className="Nav-link" 
+                        exact to={"/favorites"}>
+                        <FaHeart className="FaHeart" /> 
+                        Favorites
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink 
+                        className="Nav-link" 
+                        exact to={"/map"}>
+                        <FaRoad className="FaRoad"/> 
+                        Map
+                    </NavLink>
+                </li>
             </ul>
             <div className="Nav-info">
                 <p className="Nav-main">BNB Advisor</p>
@@ -25,7 +46,7 @@ function NavBar() {
                 based off of a given location. Give it a try! </p>
             </div>
         </div>
-    )
+    )   
 }
 
 export default NavBar

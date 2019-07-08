@@ -23,8 +23,8 @@ class Home extends React.Component{
             pathname: "/results",
             state: this.state.location
         })
-
     }
+
     render() {
         return (
             <div className="Home">

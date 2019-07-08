@@ -1,9 +1,15 @@
 import React from 'react'
 
-function Favorites() {
+import NavBar from "../Results Page/NavBar/NavBar.js"
+
+function Favorites(props) {
+    console.log(props)
     return (
         <div>
-            Favorites
+            <NavBar />
+            <div className="Favorites-Container">
+                Hello
+            </div>
         </div>
     )
 }

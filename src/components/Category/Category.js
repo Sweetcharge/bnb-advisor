@@ -3,30 +3,20 @@ import "./category.css"
 import "./item.css"
 import placeholder from "../placeholder.png"
 import { FaHeart } from 'react-icons/fa';
+import { withRouter } from 'react-router-dom';
 
 
 class Category extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            categoryName: "",
-            lat: "",
-            long: "",
-            hits: [],
-            favorites: []
+            hits: []
         }
 
         this.handleClick = this.handleClick.bind(this);
-        this.myRef = React.createRef();
     }
 
     componentWillReceiveProps(props) {
-        this.setState({
-            categoryName: props.name,
-            lat: props.lat,
-            long: props.long
-        })
-
         const link = this.getLink(props.query, 50, props.lat, props.long, props.apiKey)
         this.fetchResults(link)
         
@@ -43,7 +33,6 @@ class Category extends React.Component {
         fetch(link)
             .then( res => res.json() )
             .then( json => {
-                // console.log(JSON.stringify(json));
                 this.setState({
                     hits: json["results"]
                 })
@@ -82,10 +71,8 @@ class Category extends React.Component {
 
     handleClick(e) {
         const targetID = e.currentTarget.parentNode.id
-        const buttonID = e.currentTarget.classList.add("favorited");
         const targetElement = document.getElementById(targetID);
-
-        
+        e.currentTarget.classList.add("favorited");
     }
 
     render() {
@@ -98,11 +85,10 @@ class Category extends React.Component {
 
             const photoRef = 'photos' in item ? item["photos"][0]["photo_reference"]  : ""
             const baseURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&maxheight=100&photoreference="+photoRef+"&key="+this.props.apiKey;
-            // console.log(baseURL)
 
             const id = Math.floor(Math.random() * 10000000);
 
-           return <Item 
+            return <Item 
             uniqueID={id}
             action={this.handleClick}
             name={name} 
@@ -114,10 +100,9 @@ class Category extends React.Component {
             key={iterator} />
         });
 
-
         return (
             <div className="Category"> 
-                <p className="Category-title">{this.state.categoryName}</p>
+                <p className="Category-title">{this.props.name}</p>
                 <div className="ItemContainer">
                     {ItemComponent}
                 </div>
@@ -126,7 +111,7 @@ class Category extends React.Component {
     }
 }
 
-export default Category
+export default withRouter(Category);
 
 
 const Item = (props) => {

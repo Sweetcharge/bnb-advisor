@@ -10,9 +10,8 @@ class ResultsPage extends React.Component {
         super(props)
         this.state = {
             location: "",
+            favoritesList: [],
             apiKey: "AIzaSyAVmJ3EWDCAA1Go7BMxBUjcAPH3-9H1Uno",
-            latCoordinate: "",
-            longCoordinate: ""
         }
     }
 
@@ -20,33 +19,20 @@ class ResultsPage extends React.Component {
         const loc = this.props.history.location.state;
         this.setState({
             location: loc
-        }, this.getCoordinates(loc));
+        });
     }
 
-    getCoordinates = (location) => {
-        location = location.replace(/ /g, "%20");
-
-        const link = "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"&key="+this.state.apiKey
-        fetch(link)
-            .then( res => res.json() )
-            .then( json => {
-                this.setState({
-                    latCoordinate: json["results"][0]["geometry"]["location"].lat,
-                    longCoordinate: json["results"][0]["geometry"]["location"].lng
-                })
-            })   
-            // console.log(link);
+    updateLocation = (loc) => {
+        this.setState({
+            location: loc
+        });
     }
 
-    // Used for when a user searches for a new location via the results page
-    componentWillReceiveProps(props) {
-        if(this.props.location.state !== props.location.state) {
-            let loc = props.location.state;
-            this.getCoordinates(loc)
-            this.setState({
-                location: props.location.state
+    updateFavorites = (element) => {
+        this.setState(prevState => ({
+            favoritesList: [...prevState.favoritesList, element]
             })
-        }
+        );
     }
 
     render() {
@@ -54,13 +40,15 @@ class ResultsPage extends React.Component {
             <div className="ResultsPage">
                 <NavBar />
                 <div className="rhs">
-                <SearchTextbox searchQuery={this.state.location}/>
-                <Results 
-                    lat={this.state.latCoordinate} 
-                    long={this.state.longCoordinate} 
-                    searchQuery={this.state.location}
-                    apiKey={this.state.apiKey}
-                />
+                    <SearchTextbox 
+                        currentLocation={this.state.location}
+                        // Callback function to update the location searched from the Results page
+                        updateLocation={this.updateLocation}
+                    />
+                    <Results 
+                        apiKey={this.state.apiKey}
+                        currentLocation={this.state.location}
+                    />
                 </div>
             </div>
         )

@@ -2,33 +2,37 @@ import React from 'react'
 import "./results.css"
 
 import Category from "../../Category/Category";
-// import placeholder from "../../placeholder.png"
 
 class Results extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            searchQuery: "",
             loading: true,
-            latCoord: "",
-            longCoord: ""
+            lat: "",
+            long: ""
         }
     }
 
     componentWillMount() {
-        this.setState({
-            searchQuery: this.props.searchQuery,
-            latCoord: this.props.lat,
-            longCoord: this.props.long
-        })
+        this.getCoordinates(this.props.currentLocation)
     }
 
     componentWillReceiveProps(props) {
-        this.setState({
-            searchQuery: props.searchQuery, 
-            latCoord: props.lat,
-            longCoord: props.long
-        })
+        this.getCoordinates(props.currentLocation)
+    }
+
+    getCoordinates = (location) => {
+        location = location.replace(/ /g, "%20");
+
+        const link = "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"&key="+this.props.apiKey
+        fetch(link)
+            .then( res => res.json() )
+            .then( json => {
+                this.setState({
+                    lat: json["results"][0]["geometry"]["location"].lat,
+                    long: json["results"][0]["geometry"]["location"].lng
+                })
+            })   
     }
 
     render() {
@@ -36,18 +40,19 @@ class Results extends React.Component {
             <div className="Results">
                 <Category
                     name={"Food"}
-                    lat={this.state.latCoord}
-                    long={this.state.longCoord}
+                    lat={this.state.lat}
+                    long={this.state.long}
                     query={"food"}
                     apiKey={this.props.apiKey}
                  />
-                 <Category 
+                 {/* <Category 
+                    update={this.props.update}
                     name={"Malls"}
                     lat={this.state.latCoord}
                     long={this.state.longCoord}
                     query={"mall"}
                     apiKey={this.props.apiKey}
-                 />
+                 /> */}
                  {/* <Category 
                     name={"Hotels"}
                     lat={this.state.latCoord}
