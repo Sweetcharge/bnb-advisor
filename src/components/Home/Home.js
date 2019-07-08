@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 import Description from "../Description/Description.js";
 
+import { MyContext } from "../../Context"
+
 class Home extends React.Component{
     constructor(props) {
         super(props)
@@ -23,6 +25,7 @@ class Home extends React.Component{
             pathname: "/results",
             state: this.state.location
         })
+        this.context.setLocation(this.state.location);
     }
 
     render() {
@@ -43,8 +46,9 @@ class Home extends React.Component{
                 <Description />  
             </div>
         )
-    }
-    
+    } 
 }
 
+Home.contextType = MyContext;
 export default withRouter(Home);
+

@@ -2,6 +2,7 @@ import React from 'react'
 
 import "./search.css"
 import { FaSearch } from "react-icons/fa"
+import { MyContext } from '../../../Context';
 
 class SearchTextbox extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class SearchTextbox extends React.Component {
 
     componentWillMount() {
         this.setState({
-            newLocation: this.props.currentLocation
+            newLocation: this.context.state.searchLocation
         })
     }
 
@@ -25,7 +26,7 @@ class SearchTextbox extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.updateLocation(this.state.newLocation);
+        this.context.setLocation(this.state.newLocation);
     }
 
     render() {
@@ -49,4 +50,5 @@ class SearchTextbox extends React.Component {
     }
 }
 
+SearchTextbox.contextType = MyContext;
 export default SearchTextbox;

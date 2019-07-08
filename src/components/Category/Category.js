@@ -5,6 +5,7 @@ import placeholder from "../placeholder.png"
 import { FaHeart } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 
+import { MyContext } from "../../Context"
 
 class Category extends React.Component {
     constructor(props) {
@@ -17,12 +18,13 @@ class Category extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-        const link = this.getLink(props.query, 50, props.lat, props.long, props.apiKey)
+        const link = this.getLink(props.query, 50)
         this.fetchResults(link)
         
     }
 
-    getLink = (searchTerm, searchRadius, lat, long, apiKey) => {
+    getLink = (searchTerm, searchRadius) => {
+        const { lat, long, apiKey } = this.context.state
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
         const baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+searchTerm+"&location="+lat+","+long+"&radius="+searchRadius+"&key="+apiKey;
 
@@ -37,6 +39,7 @@ class Category extends React.Component {
                     hits: json["results"]
                 })
             })
+            .catch( (error) => console.log("ERROR: ", error))
     }
 
     convertPrice = (priceNumber) => {
@@ -73,6 +76,8 @@ class Category extends React.Component {
         const targetID = e.currentTarget.parentNode.id
         const targetElement = document.getElementById(targetID);
         e.currentTarget.classList.add("favorited");
+
+        this.context.addToFavorites(targetElement)
     }
 
     render() {
@@ -113,6 +118,7 @@ class Category extends React.Component {
 
 export default withRouter(Category);
 
+Category.contextType = MyContext;
 
 const Item = (props) => {
     return (

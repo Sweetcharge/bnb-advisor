@@ -2,57 +2,30 @@ import React from 'react'
 import "./results.css"
 
 import Category from "../../Category/Category";
+import { MyContext } from "../../../Context"
 
 class Results extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            loading: true,
-            lat: "",
-            long: ""
-        }
-    }
-
-    componentWillMount() {
-        this.getCoordinates(this.props.currentLocation)
-    }
-
-    componentWillReceiveProps(props) {
-        this.getCoordinates(props.currentLocation)
-    }
-
     getCoordinates = (location) => {
         location = location.replace(/ /g, "%20");
 
-        const link = "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"&key="+this.props.apiKey
+        const link = "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"&key="+this.context.state.apiKey
         fetch(link)
             .then( res => res.json() )
             .then( json => {
-                this.setState({
-                    lat: json["results"][0]["geometry"]["location"].lat,
-                    long: json["results"][0]["geometry"]["location"].lng
-                })
-            })   
+                const lat = json["results"][0]["geometry"]["location"].lat;
+                const long = json["results"][0]["geometry"]["location"].lng;
+
+                this.context.setCoordinates(lat, long)
+            })
+            .catch(error => console.log("ERROR", error))   
     }
 
     render() {
+        this.getCoordinates(this.context.state.searchLocation)
         return (
             <div className="Results">
-                <Category
-                    name={"Food"}
-                    lat={this.state.lat}
-                    long={this.state.long}
-                    query={"food"}
-                    apiKey={this.props.apiKey}
-                 />
-                 {/* <Category 
-                    update={this.props.update}
-                    name={"Malls"}
-                    lat={this.state.latCoord}
-                    long={this.state.longCoord}
-                    query={"mall"}
-                    apiKey={this.props.apiKey}
-                 /> */}
+                <Category name={"Food"} query={"food"} />
+                <Category name={"Malls"} query={"mall"} />
                  {/* <Category 
                     name={"Hotels"}
                     lat={this.state.latCoord}
@@ -102,4 +75,5 @@ class Results extends React.Component {
     
 }
 
+Results.contextType = MyContext;
 export default Results
