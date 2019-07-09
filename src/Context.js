@@ -4,6 +4,7 @@ const MyContext = React.createContext();
 
 class Context extends Component {
     state = {
+        loading: true,
         favoritesList: [],
         searchLocation: "",
         lat: "",
@@ -15,20 +16,24 @@ class Context extends Component {
         return (
             <MyContext.Provider value={{
                 state: this.state,
+                setLoading: (arg) => {
+                    this.setState((prevState) => ({
+                            loading: arg
+                        })
+                    );
+                },
                 setLocation: (location) => {
-                    this.setState((prevState) => {
-                        return {
-                            searchLocation: location
-                        }
-                    });
+                    this.setState((prevState) => ({
+                        searchLocation: location
+                        })
+                    );
                 },
                 setCoordinates: (lat, long) => {
-                    this.setState((prevState) => {
-                        return {
-                            lat: lat,
-                            long: long
-                        }
-                    });
+                    this.setState((prevState) => ({
+                        lat: lat,
+                        long: long
+                        })
+                    );
                 },
                 addToFavorites: (item) => {
                     this.setState(prevState => ({

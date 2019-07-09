@@ -18,13 +18,12 @@ class Category extends React.Component {
     }
 
     componentWillReceiveProps(props) {
-        const link = this.getLink(props.query, 50)
+        const link = this.getLink(this.props.query, 50, props.lat, props.long)
         this.fetchResults(link)
-        
     }
 
-    getLink = (searchTerm, searchRadius) => {
-        const { lat, long, apiKey } = this.context.state
+    getLink = (searchTerm, searchRadius, lat, long) => {
+        const { apiKey } = this.context.state
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
         const baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query="+searchTerm+"&location="+lat+","+long+"&radius="+searchRadius+"&key="+apiKey;
 
@@ -37,7 +36,7 @@ class Category extends React.Component {
             .then( json => {
                 this.setState({
                     hits: json["results"]
-                })
+                });
             })
             .catch( (error) => console.log("ERROR: ", error))
     }
@@ -94,17 +93,16 @@ class Category extends React.Component {
             const id = Math.floor(Math.random() * 10000000);
 
             return <Item 
-            uniqueID={id}
-            action={this.handleClick}
-            name={name} 
-            img={baseURL}
-            address={address}
-            price={price_level}
-            rating={rating}
-            userRating={total_user_rating} 
-            key={iterator} />
+                uniqueID={id}
+                action={this.handleClick}
+                name={name} 
+                img={baseURL}
+                address={address}
+                price={price_level}
+                rating={rating}
+                userRating={total_user_rating} 
+                key={iterator} /> 
         });
-
         return (
             <div className="Category"> 
                 <p className="Category-title">{this.props.name}</p>
