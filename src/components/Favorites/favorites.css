@@ -44,3 +44,7 @@
     transform: translateY(-20%);
     transform: translateX(-50%);
 }
+
+.FavItem {
+    border: solid 2px red;
+}

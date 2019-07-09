@@ -118,7 +118,7 @@ export default withRouter(Category);
 
 Category.contextType = MyContext;
 
-const Item = (props) => {
+export const Item = (props) => {
     return (
         <div id={props.uniqueID} className="Item">
             <button onClick={props.action} className="item-btn">{ <FaHeart className="FaHeart-Item" /> }</button>

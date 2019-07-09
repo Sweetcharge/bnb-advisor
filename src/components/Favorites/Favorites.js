@@ -4,14 +4,22 @@ import NavBar from "../Results Page/NavBar/NavBar.js"
 import "./favorites.css";
 
 import { MyContext } from "../../Context"
+import placeholder from "../placeholder.png"
 
 class Favorites extends React.Component {
-    componentDidMount() {
-        const { favoritesList } = this.context.state
-        this.favoriteComponent = favoritesList.map(value => value);
-    }
     render() {
-        console.log(this.favoriteComponent);
+        const { favoritesList } = this.context.state
+        const favorites = favoritesList.map((value, index) => (
+            <FavItem
+                key={index}
+                uniqueID={value.id}
+                name={value.childNodes[2].innerHTML} 
+                address={value.childNodes[6].innerHTML}
+                price={value.childNodes[3].innerHTML}
+                rating={value.childNodes[4].innerHTML}
+                userRating={value.childNodes[5].innerHTML}
+            />
+        ));
         return (
             <MyContext.Consumer>
                 { (value) => (
@@ -21,7 +29,7 @@ class Favorites extends React.Component {
                             <div className="Favorites-title">
                                 <p>My trip</p>
                             </div>
-                            
+                            {favorites}
                         </div>
                     </div>
                 )}
@@ -32,3 +40,19 @@ class Favorites extends React.Component {
 
 Favorites.contextType = MyContext;
 export default Favorites
+
+
+const FavItem = (props) => {
+    return (
+        <div id={props.uniqueID} className="FavItem">
+            <div className="fav-img-container">
+                <img src={placeholder} alt=""/>
+            </div>
+            <p className="fav-title">{props.name}</p>
+            <p className="fav-price">{props.price}</p>
+            <span className="fav-rating">{props.rating}</span>
+            <span className="fav-user">({props.userRating})</span>
+            <p className="fav-address">{props.address}</p>
+        </div>
+    )
+}
