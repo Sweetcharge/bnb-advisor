@@ -6,6 +6,8 @@ import "./favorites.css";
 import { MyContext } from "../../Context"
 import placeholder from "../placeholder.png"
 
+import { FaTrashAlt, FaDirections } from "react-icons/fa"
+
 class Favorites extends React.Component {
     render() {
         const { favoritesList } = this.context.state
@@ -25,10 +27,10 @@ class Favorites extends React.Component {
                 { (value) => (
                     <div className="Favorites">
                         <NavBar />
+                        <div className="Favorites-title">
+                            <p>My trip</p>
+                        </div>
                         <div className="Favorites-Container">
-                            <div className="Favorites-title">
-                                <p>My trip</p>
-                            </div>
                             {favorites}
                         </div>
                     </div>
@@ -48,11 +50,15 @@ const FavItem = (props) => {
             <div className="fav-img-container">
                 <img src={placeholder} alt=""/>
             </div>
-            <p className="fav-title">{props.name}</p>
-            <p className="fav-price">{props.price}</p>
-            <span className="fav-rating">{props.rating}</span>
-            <span className="fav-user">({props.userRating})</span>
-            <p className="fav-address">{props.address}</p>
+            <div className="fav-Info">
+                <p className="fav-title">{props.name}</p>
+                <p className="fav-price">{props.price}</p>
+                <span className="fav-rating">{props.rating}</span>
+                <span className="fav-user">{props.userRating}</span>
+                <p className="fav-address">{props.address}</p>
+                <button className="fav-direction"><FaDirections className="FaDirections"/></button>
+                <button className="fav-remove"><FaTrashAlt className="FaTrash" /></button>
+            </div>
         </div>
     )
 }
