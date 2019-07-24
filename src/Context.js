@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { state } from 'lodash';
+
 const MyContext = React.createContext();
 
 class Context extends Component {

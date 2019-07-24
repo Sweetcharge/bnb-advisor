@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "homepage": "http://Sweetcharge.github.io/bnb-advisor",
     "braces": "^2.3.2",
     "eslint": "^4.19.1",
     "js-yaml": "^3.13.1",
@@ -17,11 +18,15 @@
     "react-scripts": "0.9.5",
     "webpack-dev-server": "^3.1.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

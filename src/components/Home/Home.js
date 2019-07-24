@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import { MyContext } from "../../Context";
 import "./Home.css";
 
+import { handleChange, handleSubmit } from 'lodash';
+
 class Home extends React.Component{
     constructor(props) {
         super(props)

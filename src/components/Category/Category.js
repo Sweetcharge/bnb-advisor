@@ -4,6 +4,8 @@ import "./item.css"
 import { FaHeart } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 
+import { getLink, fetchResults, convertPrice, convertRating } from 'lodash'
+
 import { MyContext } from "../../Context"
 
 class Category extends React.Component {

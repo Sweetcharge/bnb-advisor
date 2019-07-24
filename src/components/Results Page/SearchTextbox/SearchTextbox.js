@@ -4,6 +4,8 @@ import "./search.css"
 import { FaSearch } from "react-icons/fa"
 import { MyContext } from '../../../Context';
 
+import { handleChange, handleSubmit } from 'lodash';
+
 class SearchTextbox extends React.Component {
     constructor(props) {
         super(props)

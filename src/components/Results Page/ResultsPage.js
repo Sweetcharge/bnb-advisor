@@ -7,6 +7,8 @@ import "./resultsPage.css";
 
 import { MyContext } from "../../Context"
 
+import { getCoordinates } from 'lodash';
+
 class ResultsPage extends React.Component {
     getCoordinates = (location) => {
         location = location.replace(/ /g, "%20");
