@@ -4,7 +4,6 @@ import NavBar from "../Results Page/NavBar/NavBar.js"
 import "./favorites.css";
 
 import { MyContext } from "../../Context"
-import placeholder from "../placeholder.png"
 
 class Favorites extends React.Component {
     render() {
@@ -18,7 +17,9 @@ class Favorites extends React.Component {
                 price={value.childNodes[3].innerHTML}
                 rating={value.childNodes[4].innerHTML}
                 userRating={value.childNodes[5].innerHTML}
+                img={value.childNodes[1].childNodes[0].src}
             />
+            
         ));
         return (
             <MyContext.Consumer>
@@ -46,7 +47,7 @@ const FavItem = (props) => {
     return (
         <div id={props.uniqueID} className="FavItem">
             <div className="fav-img-container">
-                <img src={placeholder} alt=""/>
+                <img src={props.img} alt=""/>
             </div>
             <div className="fav-Info">
                 <p className="fav-title">{props.name}</p>

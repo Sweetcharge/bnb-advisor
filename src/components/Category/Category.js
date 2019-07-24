@@ -1,7 +1,6 @@
 import React from 'react'
 import "./category.css"
 import "./item.css"
-import placeholder from "../placeholder.png"
 import { FaHeart } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 
