@@ -9,7 +9,7 @@ class Context extends Component {
         searchLocation: "",
         lat: "",
         long: "",
-        apiKey: "AIzaSyAVmJ3EWDCAA1Go7BMxBUjcAPH3-9H1Uno"
+        apiKey: "AIzaSyC5-LNIzH6GGVYF0mU2lv0CNsDr8UrKZys"
     }
 
     render() {

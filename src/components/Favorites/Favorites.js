@@ -6,8 +6,6 @@ import "./favorites.css";
 import { MyContext } from "../../Context"
 import placeholder from "../placeholder.png"
 
-import { FaTrashAlt, FaDirections } from "react-icons/fa"
-
 class Favorites extends React.Component {
     render() {
         const { favoritesList } = this.context.state
@@ -56,8 +54,6 @@ const FavItem = (props) => {
                 <span className="fav-rating">{props.rating}</span>
                 <span className="fav-user">{props.userRating}</span>
                 <p className="fav-address">{props.address}</p>
-                <button className="fav-direction"><FaDirections className="FaDirections"/></button>
-                <button className="fav-remove"><FaTrashAlt className="FaTrash" /></button>
             </div>
         </div>
     )

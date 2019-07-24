@@ -26,7 +26,19 @@ class SearchTextbox extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.context.setLocation(this.state.newLocation);
+        const location = this.state.newLocation.replace(/ /g, "%20");
+
+        const link = "https://maps.googleapis.com/maps/api/geocode/json?address="+location+"&key="+this.context.state.apiKey
+        fetch(link)
+            .then( res => res.json() )
+            .then( json => {
+                const { setCoordinates } = this.context;
+                const lat = json["results"][0]["geometry"]["location"].lat;
+                const long = json["results"][0]["geometry"]["location"].lng;
+
+                setCoordinates(lat, long);
+            })
+            .catch(error => console.log("ERROR", error))
     }
 
     render() {

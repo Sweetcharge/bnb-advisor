@@ -74,7 +74,7 @@ class Category extends React.Component {
     handleClick(e) {
         const targetID = e.currentTarget.parentNode.id
         const targetElement = document.getElementById(targetID);
-        e.currentTarget.classList.add("favorited");
+        targetElement.children[0].classList.add("favorited");
 
         this.context.addToFavorites(targetElement)
     }
@@ -88,8 +88,7 @@ class Category extends React.Component {
             const total_user_rating = 'user_ratings_total' in item ? item["user_ratings_total"]  : "N/a"
 
             const photoRef = 'photos' in item ? item["photos"][0]["photo_reference"]  : ""
-            const baseURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&maxheight=100&photoreference="+photoRef+"&key="+this.props.apiKey;
-
+            const baseURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&maxheight=100&photoreference="+photoRef+"&key="+this.context.state.apiKey;
             const id = Math.floor(Math.random() * 10000000);
 
             return <Item 
@@ -123,7 +122,7 @@ export const Item = (props) => {
         <div id={props.uniqueID} className="Item">
             <button onClick={props.action} className="item-btn">{ <FaHeart className="FaHeart-Item" /> }</button>
             <div className="img-container">
-                <img src={placeholder} alt=""/>
+                <img src={props.img} alt=""/>
             </div>
             <p className="item-title">{props.name}</p>
             <p className="item-price">{props.price}</p>

@@ -1,9 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 
-import Description from "../Description/Description.js";
-
-import { MyContext } from "../../Context"
+import { MyContext } from "../../Context";
+import "./Home.css";
 
 class Home extends React.Component{
     constructor(props) {
@@ -30,20 +29,23 @@ class Home extends React.Component{
 
     render() {
         return (
-            <div className="Home">
-                <form onSubmit={this.handleSubmit}>
-                    <input 
-                        type="text" 
-                        placeholder="Enter a location"
-                        value={this.state.location}
-                        onChange={this.handleChange}
-                        name="location"
-                    />
-                    <button >
-                        Results
-                    </button>
-                </form>
-                <Description />  
+            <div>
+                <div className="Home">
+                    <p className="home-title">Roadtrips made easier.</p>
+                    <form onSubmit={this.handleSubmit} className="home-form">
+                        <input 
+                            type="text" 
+                            placeholder="Enter a location"
+                            value={this.state.location}
+                            onChange={this.handleChange}
+                            name="location"
+                            className="home-input"
+                        />
+                        <button className="home-btn">
+                            Search
+                        </button>
+                    </form>  
+                </div>
             </div>
         )
     } 

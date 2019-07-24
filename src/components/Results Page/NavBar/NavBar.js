@@ -2,7 +2,7 @@ import React from 'react'
 
 import placeholder from "../../placeholder.png"
 
-import { FaHome, FaHeart, FaRoad } from 'react-icons/fa';
+import { FaHome, FaHeart } from 'react-icons/fa';
 
 import { NavLink } from "react-router-dom";
 import "./nav.css"
@@ -27,14 +27,6 @@ class NavBar extends React.Component{
                             exact to={"/favorites"}>
                             <FaHeart className="FaHeart" /> 
                             Favorites
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink 
-                            className="Nav-link" 
-                            exact to={"/map"}>
-                            <FaRoad className="FaRoad"/> 
-                            Map
                         </NavLink>
                     </li>
                 </ul>

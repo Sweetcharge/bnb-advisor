@@ -1,0 +1,64 @@
+.Home {
+    background: url("./BNB-Advisor-Homepage.jpg") center no-repeat;
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+}
+
+.home-title {
+    margin-top: 0;
+    padding-top: 150px;
+    font-size: 50px;
+    font-family: "HelveticaNeue";
+    color: #1607049f;
+}
+
+.home-form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateY(-40%);
+    transform: translateX(-50%);
+    background-color: #3c21136e;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 1px rgba(67, 67, 67, 0.269);
+    height: 50px;
+    width: 400px;
+    padding: 20px;
+}
+
+.home-input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: solid 4px rgba(255, 255, 255, 0);
+    width: 70%;
+    font-size: 25px;
+    margin: 5px 0px;
+    padding-bottom: 5px;
+    transition: 0.15s ease-in-out;
+    font-family: "HelveticaNeue-Light";
+    color: #160704;
+}
+
+.home-input:focus {
+    outline: none;
+    border-bottom: solid 4px #1607049f;
+}
+
+.home-input::placeholder {
+    color: white;
+    opacity: 0.25;
+}
+
+.home-btn {
+    border: 0;
+    background-color: transparent;
+    height: 50px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 30px;
+}
+
+.home-btn:hover {
+    cursor: pointer;
+}
